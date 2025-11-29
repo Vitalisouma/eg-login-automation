@@ -1,4 +1,5 @@
-﻿using NUnitPlaywright.Pages;
+﻿using Microsoft.Playwright;
+using NUnitPlaywright.Pages;
 
 namespace NUnitPlaywright
 {
@@ -131,6 +132,19 @@ namespace NUnitPlaywright
             await loginPage.LoginAsync("", "");
             await Expect(Page.Locator("#errorMsgMail")).ToHaveTextAsync("Invalid email");
             await Expect(Page.Locator("#errorMsgPwd")).ToHaveTextAsync("Invalid Password");
+
+        }
+
+        [Test]
+        public async Task OpenTaskPlannerSmokeCheck()
+        {
+            var loginPage = new LoginPage(Page);
+            var taskPlannerPage = new TaskPlannerPage(Page);
+
+            await RegisterAccount();
+            await loginPage.GoToNextPageAsync();
+            await Expect(Page.Locator("#taskPlanner")).ToHaveTextAsync("Task Planner");
+            await taskPlannerPage.ThereIsAnAddTaskButtonAsync();
 
         }
 

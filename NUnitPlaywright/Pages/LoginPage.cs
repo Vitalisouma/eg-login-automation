@@ -20,6 +20,10 @@ namespace NUnitPlaywright.Pages
         private readonly ILocator _validEmailLabel;
         private readonly ILocator _validPasswordLabel;
 
+        private readonly ILocator _nextButtton;
+        private readonly ILocator _previousButtton;
+        private object _nextButton;
+
         public LoginPage(IPage page)
         {
             _page = page;
@@ -34,8 +38,11 @@ namespace NUnitPlaywright.Pages
 
             _validEmailLabel = page.Locator("#errorMsgMail");
             _validPasswordLabel = page.Locator("#errorMsgPwd");
-        }
 
+            _nextButtton = page.Locator("#nextButton"); //  await page.getByRole('button', { name: 'Next' }).click();
+            _previousButtton = page.Locator("#prevButton");
+
+        }
         public async Task GotoAsync()
         {
             // Resolve absolute path and ensure the file exists in the test output folder
@@ -87,6 +94,13 @@ namespace NUnitPlaywright.Pages
         {
             await _validEmailLabel.IsVisibleAsync();
             await _validPasswordLabel.IsVisibleAsync();
+        }
+
+
+
+        public async Task GoToNextPageAsync()
+        {
+            await _nextButton.ClickAsync();
         }
 
 
