@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login Page</title>
+<style>
+        /* CSS styling for login form */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h2, h3 {
+            text-align: center;
+        }
+        .container,
+        textarea {
+            width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            margin-bottom: 20px;
+            margin-right: 20px;
+            flex: 2;
+        }
+        .navButtonsContainer {
+            width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            margin-right: 20px;
+            flex: 2;
+            display: flex;
+            flex-direction: row;"
+        }
+        .containerWrapper {
+            width: 350px;
+            margin: 0 auto;
+            padding: 10px;
+            border: 1px solid white;
+            border-radius: 5px;
+            background-color: white;
+            margin-bottom: 10px;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="Name"] {
+            width: 90%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; /* Include padding in the width */
+        }
+        input[type="button"],
+        .navButton {
+            width: 90%;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        #prevButton {
+            margin-right: 80px;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+        #taskPlanner,
+        #taskPlannerTextBox {
+            display: none;
+        }
+        #taskList {
+            margin-top: 20px;
+            padding: 0;
+            list-style-type: none;
+        }
+        #taskList li {
+            margin-bottom: 5px;
+        }
+        .taskContainer {
+            display: flex;
+            align-items: center;
+        }
+        .taskText {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="containerWrapper">
+<div class="container" id="registrationForm">
+<h2>Registration Form</h2>
+<form>
+<label for="candidateName">Full Name:</label>
+<input id="candidateName" name="candidateName" pattern="\w+\s+\w+" required="" type="text"/>
+<br/>
+<span class="error" id="errorMsgRegName"></span>
+<br/>
+<label for="candidateMail">Email:</label>
+<input id="candidateMail" minlength="4" name="candidateMail" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required="" type="text"/>
+<br/>
+<span class="error" id="errorMsgRegMail"></span>
+<input id="startButton" onclick="validateReg()" type="button" value="Start"/>
+</form>
+</div>
+</div>
+<div active="false" id="timer" style="display: none;">00:00:00</div>
+<div class="containerWrapper" id="loginTable" style="display: none; flex-direction: column;">
+<div class="container">
+<h3>User Story</h3>
+<p>
+<strong>Home Assignment - Automation (UI)</strong><br/>Design a maintainable Automation UI test for the Login page using a modern framework and page object model (POM).
+  <br/><br/>
+<strong>Technology (choose one):</strong>
+<ul>
+<li><div><b>Language:</b> C# / Java / JS / TS</div></li>
+<li><div><b>Framework:</b> Playwright / Selenium / Cypress</div></li>
+</ul>
+<strong>Scope (keep it lean):</strong>
+<ul>
+<li>Implement <b>POM</b> and a small, clean project skeleton (pages, tests, utils).</li>
+<li>Automate the Login flow covering: 1–2 valid email/password cases and 3–5 invalid cases as per the User Story rules.</li>
+<li>Assert <b>Valid/Invalid</b> feedback and error placements.</li>
+<li>Add a simple smoke check that clicking <b>“Next”</b> reveals the Task Planner screen.</li>
+</ul>
+<strong>Repository &amp; CI (required):</strong>
+<ul>
+<li>Use a <b>public GitHub repository</b>. Include a <code>README.md</code> with local &amp; CI run instructions.</li>
+<li>Add <b>GitHub Actions</b> workflow to run tests <b>on every push and pull request</b> in headless mode on <code>ubuntu-latest</code>.</li>
+<li>Fail the job on test failures and upload a basic test report artifact (default HTML/JUnit is fine).</li>
+</ul>
+<strong>Constraints:</strong>
+<ul>
+<li>No external services, no Docker/cloud grids, keep dependencies minimal to the chosen framework.</li>
+</ul>
+<strong>Deliverables:</strong>
+<ul>
+<li>Public GitHub link with passing CI on the latest commit.</li>
+<li>Automation code meeting the scope above.</li>
+</ul>
+<hr/>
+<p>
+<strong>Visual validation messages</strong><br/>
+  After you type in each field:
+  <ul>
+<li>A <span style="color:#1fd655;font-weight:bold;">Valid</span> indicator should appear for correct input.</li>
+<li>A <span style="color:#ff4d4f;font-weight:bold;">Invalid</span> indicator should appear for incorrect input.</li>
+<li>Field-specific error text should be displayed near the field when invalid.</li>
+</ul>
+<strong>Email rules</strong>
+<ol>
+<li>Starts with one or more alphabetic characters (a–z, A–Z).</li>
+<li>Can include digits and the characters <code>._%+-</code> before the <code>@</code>.</li>
+<li>After <code>@</code>, must have one or more alphanumeric segments separated by dots or hyphens.</li>
+<li>Must include a dot before the TLD.</li>
+<li>TLD is alphabetic and at least 2 characters (e.g., <code>.com</code>, <code>.io</code>).</li>
+</ol>
+<strong>Password rules</strong>
+<ol>
+<li>Minimum length: <b>8</b> characters.</li>
+<li>Contains at least one uppercase letter <code>[A-Z]</code>.</li>
+<li>Contains at least one lowercase letter <code>[a-z]</code>.</li>
+<li>Contains at least one digit <code>[0-9]</code>.</li>
+<li>Contains at least one special character from <code>[@$!%*?&amp;]</code>.</li>
+</ol>
+<strong>Note</strong>: The fields may intentionally include defects; your automation should detect mismatches between these rules and the app’s behavior.
+</p>
+</p>
+</div>
+<div class="container">
+<h2>Login</h2>
+<form id="loginForm">
+<label for="email">Email:</label>
+<input id="email" minlength="4" name="email" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2}$" required="" type="text"/>
+<br/>
+<span class="error" id="errorMsgMail"></span>
+<br/>
+<label for="password">Password:</label>
+<input id="password" name="password" pattern="^(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&amp;])[a-zA-Z\d@$!%*?&amp;]{6,}$" required="" type="password"/>
+<label for="showPassword">Show/Hide</label>
+<input id="showPassword" onclick="showHidePassword()" type="checkbox"/>
+<br/>
+<span class="error" id="errorMsgPwd"></span>
+<br/>
+<input onclick="validateLogin()" type="button" value="Login"/>
+</form>
+</div>
+</div>
+<div class="containerWrapper" style="display: flex; flex-direction: column;">
+<div class="container" id="taskPlannerTextBox" style="display: none;">
+<h3>User Story</h3>
+<p>
+  Our Call Center Management has received several reports about an error occurring in the Task Planner App.
+<br/><br/><strong>Here is the report:</strong><br/>
+    An error message pops up when I try to delete a task sometimes.<br/>
+    It happens randomly and prevents us from deleting tasks that have been completed.
+<br/><br/>
+<strong>Task (Manual Testing)</strong><br/>
+  Explore the Task Planner and document <b>one focused bug report</b> related to the reported deletion issue.
+<br></br>
+<strong>Include:</strong>
+<ul>
+<li>Clear title, environment, steps to reproduce, expected vs. actual result, reproducibility notes, and severity.</li>
+<li>Keep the scope tight and precise - assume the issue is deterministic with the right steps.</li>
+<li>Open a bug report <b>in the repository’s GitHub “Issues” tab</b> with clear title, environment, steps to reproduce, expected vs. actual result, reproducibility notes, and severity.</li>
+</ul>
+  After completing the task part, click on the <b>“Finish”</b> button.
+</p>
+</div>
+<div class="container" id="taskPlanner" style="display: none;">
+<h2>Task Planner</h2>
+<ul id="taskList">
+<li>
+<div class="taskContainer">
+<span class="taskText">Task 1</span>
+<button onclick="deleteTask(this)">Delete</button>
+</div>
+</li>
+<li>
+<div class="taskContainer">
+<span class="taskText">Task 2</span>
+<button onclick="deleteTask(this)">Delete</button>
+</div>
+</li>
+<li>
+<div class="taskContainer">
+<span class="taskText">Task 3</span>
+<button onclick="deleteTask(this)">Delete</button>
+</div>
+</li>
+</ul>
+<input id="newTask" placeholder="Enter task" type="text"/>
+<button onclick="addTask()">Add Task</button>
+</div>
+</div>
+<div class="containerWrapper" style="text-align: center;">
+<div class="navButtonsContainer">
+<button class="navButton" id="prevButton" onclick="prev()" pagenum="1" style="display: none;">Previous</button>
+<button class="navButton" id="nextButton" onclick="next()" pagenum="1" style="display: none;">Next</button>
+</div>
+</div>
+<div class="containerWrapper" style="display: flex; flex-direction: column; text-align: center;">
+<h1 id="tyMsg" style="display: none;">Thank you for your time!</h1>
+<p id="tyTxt" style="display: none;">
+            Please reply to our HR Team with the results.
+            <br/>
+            Looking forward to seeing your great work! :)
+        </p>
+</div>
+<script>
+        function finish() {
+            var currentTime = new Date().toLocaleString("en-US", { timeZone: "Europe/Moscow" });
+            var uName = document.getElementById('uName').value;
+            var uMail = document.getElementById('uMail').value;
+            var nextButton = document.getElementById('nextButton');
+            var prevButton = document.getElementById('prevButton');
+            var taskPlanner = document.getElementById("taskPlanner");
+            var taskPlannerTextBox = document.getElementById("taskPlannerTextBox");
+            var finalMsg = document.getElementById('tyMsg');
+            var finalTxt = document.getElementById('tyTxt');
+
+                // Constructing the data payload
+                var data = {
+                    name: uName,
+                    email: uMail,
+                    time: currentTime,
+                    EventName: "End"
+                };
+
+                // Sending data to the webhook URL
+                fetch('https://hook.us1.make.com/d8abuoftoi9hyrstcedxvjp4eqr8tps6', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Data sent successfully:', data);
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+
+                taskPlanner.style.display = "none";
+                taskPlannerTextBox.style.display = "none";
+                nextButton.style.display = "none";
+                prevButton.style.display = "none";
+                finalMsg.style.display = "block";
+                finalTxt.style.display = "block";
+        }
+
+        function next() {
+            var nextButton = document.getElementById('nextButton');
+            var prevButton = document.getElementById('prevButton');
+            var taskPlanner = document.getElementById("taskPlanner");
+            var taskPlannerTextBox = document.getElementById("taskPlannerTextBox");
+            var loginTable = document.getElementById("loginTable");
+
+            if (nextButton.getAttribute('pageNum') === '1') {
+                nextButton.setAttribute('pageNum', '2');
+                prevButton.setAttribute('pageNum', '2');
+                taskPlanner.style.display = "block";
+                taskPlannerTextBox.style.display = "block";
+                loginTable.style.display = "none";
+                nextButton.textContent = 'Finish';
+                nextButton.onclick = finish;
+            }
+        }
+
+        function prev() {
+            var nextButton = document.getElementById('nextButton');
+            var prevButton = document.getElementById('prevButton');
+            var taskPlanner = document.getElementById("taskPlanner");
+            var taskPlannerTextBox = document.getElementById("taskPlannerTextBox");
+            var loginTable = document.getElementById("loginTable");
+
+            if (prevButton.getAttribute('pageNum') === '2') {
+                nextButton.setAttribute('pageNum', '1');
+                prevButton.setAttribute('pageNum', '1');
+                taskPlanner.style.display = "none";
+                taskPlannerTextBox.style.display = "none";
+                loginTable.style.display = "block";
+                nextButton.textContent = 'Next';
+                nextButton.onclick = next;
+            }
+        }
+
+        // Validation for Registration Form
+        function validateReg() {
+            var canMail = document.getElementById("candidateMail").value;
+            var canName = document.getElementById("candidateName").value;
+            var errorMsgRegMail = document.getElementById("errorMsgRegMail");
+            var errorMsgRegName = document.getElementById("errorMsgRegName");
+            var patternMail = new RegExp(document.getElementById("candidateMail").getAttribute('pattern'));
+            var patternName = new RegExp(document.getElementById("candidateName").getAttribute('pattern'));
+            var regForm = document.getElementById('registrationForm');
+            var login = document.getElementById('loginTable');
+            var nextButton = document.getElementById('nextButton');
+            var prevButton = document.getElementById('prevButton');
+
+            if (!patternMail.test(canMail)) {
+                errorMsgRegMail.textContent = "Please enter a valid email";
+            } else if (!patternName.test(canName)) {
+                errorMsgRegName.textContent = "Please type your full name";
+            } else {
+                errorMsgRegMail.textContent = "";
+                errorMsgRegName.textContent = "";
+                regForm.style.display = "none";
+                login.style.display = "flex";
+                nextButton.style.display = "block";
+                prevButton.style.display = "block";
+                var currentTime = new Date().toLocaleString("en-US", { timeZone: "Europe/Moscow" });
+
+                var data = {
+                    name: canName,
+                    email: canMail,
+                    time: currentTime,
+                    EventName: "Start"
+                };
+
+                fetch('https://hook.us1.make.com/d8abuoftoi9hyrstcedxvjp4eqr8tps6', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Data sent successfully:', data);
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+
+                var hiddenEmailInput = document.createElement("input");
+                hiddenEmailInput.type = "hidden";
+                hiddenEmailInput.id = "uMail";
+                hiddenEmailInput.name = "hiddenEmail";
+                hiddenEmailInput.value = canMail;
+
+                var hiddenNameInput = document.createElement("input");
+                hiddenNameInput.type = "hidden";
+                hiddenNameInput.id = "uName";
+                hiddenNameInput.name = "hiddenName";
+                hiddenNameInput.value = canName;
+
+                document.getElementById("registrationForm").appendChild(hiddenEmailInput);
+                document.getElementById("registrationForm").appendChild(hiddenNameInput);
+            }
+        }
+
+        // Timer functionality
+        let timerInterval;
+        let startTime;
+
+        function startTimer() {
+            var timer = document.getElementById('timer');
+            var isActivated = timer.getAttribute('active');
+
+            if (isActivated === "false") {
+                startTime = new Date().getTime();
+                timer.setAttribute('active', 'true');
+                timerInterval = setInterval(updateTimer, 1000);
+            }
+        }
+
+        function updateTimer() {
+            const currentTime = new Date().getTime();
+            const elapsedTime = currentTime - startTime;
+
+            const hours = Math.floor(elapsedTime / (1000 * 60 * 60));
+            const minutes = Math.floor((elapsedTime % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((elapsedTime % (1000 * 60)) / 1000);
+
+            const formattedTime = padNumber(hours) + ":" + padNumber(minutes) + ":" + padNumber(seconds);
+
+            document.getElementById('timer').innerText = formattedTime;
+        }
+
+        function padNumber(number) {
+            return (number < 10 ? '0' : '') + number;
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+        }
+
+        // Event listeners for timer
+        document.getElementById('startButton').addEventListener('click', startTimer);
+
+
+        // Show/Hide password functionality
+        function showHidePassword() {
+            var password = document.getElementById("password");
+            password.type = (password.type === "password") ? "text" : "password";
+        }
+
+        // Login form validation
+        function validateLogin() {
+            var email = document.getElementById("email").value;
+            var emailPattern = document.getElementById("email").getAttribute('pattern');
+            var password = document.getElementById("password").value;
+            var passwordPattern = document.getElementById("password").getAttribute('pattern');
+            var errorMsgMail = document.getElementById("errorMsgMail");
+            var errorMsgPwd = document.getElementById("errorMsgPwd");
+
+            var emailRegex = new RegExp(emailPattern);
+            var passwordRegex = new RegExp(passwordPattern);
+
+            if (!emailRegex.test(email) && !passwordRegex.test(password)) {
+                errorMsgMail.textContent = "Invalid email";
+                errorMsgMail.style.color = "red";
+                errorMsgPwd.textContent = "Invalid Password";
+                errorMsgPwd.style.color = "red";
+            } else if (!emailRegex.test(email) && passwordRegex.test(password)) {
+                errorMsgMail.textContent = "Invalid email";
+                errorMsgMail.style.color = "red";
+                errorMsgPwd.style.color = "green";
+                errorMsgMail.textContent = "Valid Password";
+            } else if (emailRegex.test(email) && !passwordRegex.test(password)) {
+                errorMsgMail.textContent = "Vaild Email";
+                errorMsgMail.style.color = "green";
+                errorMsgPwd.textContent = "Invalid Password";
+                errorMsgPwd.style.color = "red";
+            } else if (emailRegex.test(email) && passwordRegex.test(password)) {
+                errorMsgMail.textContent = "Valid Email";
+                errorMsgMail.style.color = "green";
+                errorMsgPwd.textContent = "Valid Password";
+                errorMsgPwd.style.color = "green";
+            }
+        }
+
+
+
+        // Task Planner functionality
+        function addTask() {
+            var newTaskInput = document.getElementById("newTask");
+            var taskList = document.getElementById("taskList");
+            var newTaskText = newTaskInput.value.trim();
+
+            if (newTaskText) {
+                var li = document.createElement("li");
+                li.textContent = newTaskText;
+                var deleteButton = document.createElement("button");
+                deleteButton.textContent = "Delete";
+                deleteButton.onclick = function() { deleteTask(this); };
+                li.appendChild(deleteButton);
+                taskList.appendChild(li);
+                newTaskInput.value = "";
+            }
+        }
+
+        function deleteTask(button) {
+            var li = button.parentNode;
+            var index = Array.prototype.indexOf.call(li.parentNode.children, li);
+            if ((index + 1) % 3 === 0) {
+                alert("An exception occurred while deleting this task.");
+            } else {
+                li.parentNode.removeChild(li);
+            }
+        }
+        function sendDataToWebhook() {
+            var candidateName = document.getElementById("candidateName").value;
+            var candidateMail = document.getElementById("candidateMail").value;
+            var currentTime = new Date().toLocaleString("en-US", { timeZone: "GMT+3" });
+
+            // Constructing the data payload
+            var data = {
+                name: candidateName,
+                email: candidateMail,
+                time: currentTime
+            };
+
+            fetch('https://hook.us1.make.com/d8abuoftoi9hyrstcedxvjp4eqr8tps6', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Data sent successfully:', data);
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+        }
+    </script>
+</body>
+</html>
