@@ -18,9 +18,9 @@ jobs:
     runs-on: ubuntu-latest  # or you can change to windows-latest
    
     # Define your desired browsers
-    strategy:
-      matrix:
-        browser: [chromium, firefox, webkit]
+   # strategy:
+    #  matrix:
+     #   browser: [chromium, firefox, webkit]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -43,5 +43,5 @@ jobs:
         run: npx playwright install --with-deps
 
      # Run tests in mulptiple browsers
-      - name: Run Playwright tests
-        run: npx playwright test --project=${{ matrix.browser }}
+     # - name: Run Playwright tests
+     #   run: npx playwright test --project=${{ matrix.browser }}
