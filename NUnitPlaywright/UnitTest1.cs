@@ -124,7 +124,7 @@ namespace NUnitPlaywright
             await taskPlannerPage.AddTaskButtonIsPresentAsync();
         }
 
-
+                // Extra tests for invalid cases
         [Test] // Test 9: Invalid Test for password with no digit 
         public async Task InvalidLoginPasswordHasNoDigit()
         {
