@@ -45,8 +45,8 @@ jobs:
         run: npx playwright install --with-deps
 
       # Executes the project's test suite
-      - name: Run tests
-        run: npm test 
+      - name: Run Playwright tests
+        run: npx playwright test
 
 
      # Run tests in mulptiple browsers
