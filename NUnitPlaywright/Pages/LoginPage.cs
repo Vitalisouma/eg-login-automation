@@ -100,11 +100,19 @@ namespace NUnitPlaywright.Pages
         }
 
 
+        // Click previous buttonto go back to Previous page
+        public async Task GoToPreviousPageAsync()
+        {
+            await _previousButton.ClickAsync();
+        }
+
+
         // Click Next to go to the  Task Planner page
         public async Task GoToNextPageAsync()
         {
             await _nextButton.ClickAsync();
         }
 
+        
     }
 }

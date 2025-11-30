@@ -8,6 +8,7 @@ namespace NUnitPlaywright
     public class Tests : PageTest
     {
         
+        
         public async Task RegisterAccount()
         {
             var loginPage = new LoginPage(Page); // Use the provided 'Page' property
