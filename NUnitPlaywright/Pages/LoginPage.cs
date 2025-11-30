@@ -20,9 +20,9 @@ namespace NUnitPlaywright.Pages
         private readonly ILocator _validEmailLabel;
         private readonly ILocator _validPasswordLabel;
 
-        private readonly ILocator _nextButtton;
-        private readonly ILocator _previousButtton;
-        private object _nextButton;
+        private readonly ILocator _nextButton;
+        private readonly ILocator _previousButton;
+        
 
         public LoginPage(IPage page)
         {
@@ -39,10 +39,12 @@ namespace NUnitPlaywright.Pages
             _validEmailLabel = page.Locator("#errorMsgMail");
             _validPasswordLabel = page.Locator("#errorMsgPwd");
 
-            _nextButtton = page.Locator("#nextButton"); //  await page.getByRole('button', { name: 'Next' }).click();
-            _previousButtton = page.Locator("#prevButton");
+            _nextButton = page.Locator("#nextButton"); // nextButton = page.GetByRole(AriaRole.Button, new() {  Name = "nextButton" });
+            _previousButton = page.Locator("#prevButton");
 
         }
+
+        // Open the html file to access the online app
         public async Task GotoAsync()
         {
             // Resolve absolute path and ensure the file exists in the test output folder
@@ -72,7 +74,7 @@ namespace NUnitPlaywright.Pages
         }
 
 
-        // Do  login with email and password
+        // Do login with email and password
         public async Task LoginAsync(string email, string password)
         {
             await _emailInput.FillAsync(email);
@@ -81,6 +83,7 @@ namespace NUnitPlaywright.Pages
         }
 
 
+        // check the Show/Hide checkbox
         public async Task ShowHidePasswordAsync(string email, string password)
         {
             await _emailInput.FillAsync(email);
@@ -89,7 +92,7 @@ namespace NUnitPlaywright.Pages
         }
 
 
-        // On log in succesfully, show valid email and password labels 
+        // On succesful log in, show valid email and password messages
         public async Task LoginSuccessAsync()
         {
             await _validEmailLabel.IsVisibleAsync();
@@ -97,12 +100,11 @@ namespace NUnitPlaywright.Pages
         }
 
 
-
+        // Click Next to go to the  Task Planner page
         public async Task GoToNextPageAsync()
         {
             await _nextButton.ClickAsync();
         }
-
 
     }
 }
