@@ -100,7 +100,7 @@ namespace NUnitPlaywright.Pages
         }
 
 
-        // Click previous buttonto go back to Previous page
+        // Click previous button to go back to Previous page
         public async Task GoToPreviousPageAsync()
         {
             await _previousButton.ClickAsync();

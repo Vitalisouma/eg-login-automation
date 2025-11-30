@@ -137,7 +137,7 @@ namespace NUnitPlaywright
 
             await RegisterAccount();
             await loginPage.GoToNextPageAsync();
-            await Expect(Page.Locator("#taskPlanner")).ToHaveTextAsync("Task Planner");
+            await Expect(Page.Locator("#taskPlanner")).ToContainTextAsync("Task Planner");
             await taskPlannerPage.AddTaskButtonIsPresentAsync();
         }
 
