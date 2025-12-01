@@ -23,7 +23,15 @@ jobs:
 
     - name: Restore dependencies
       run: dotnet restore
-
+      
+ # TRY: Install Ensure PowerShell is functional and updated:
+    - name: Ensure PowerShell is functional and updated 
+      run: dotnet tool install --global PowerShell 
+      
+  # TRY: Correctly use the Playwright CLI for installation
+    - name: Use Playwright CLI for installation
+      run: dotnet tool install --global Microsoft.Playwright.CLI
+      
  # Install Playwright browsers and their dependencies
     - name: Install Playwright browsers
       run: pwsh bin/Debug/net10.0/playwright.ps1 install --with-deps
