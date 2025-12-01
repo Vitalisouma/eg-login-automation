@@ -49,7 +49,7 @@ namespace NUnitPlaywright
         }
 
 
-        [Test]  // Test 3: Invalid Test for login with incomplete an email
+        [Test]  // Test 3: Invalid Test for login with an incomplete email
         public async Task InvalidLoginIncompleteEmail()
         {
             // Go to the app, register and login with an incomplete email in format
