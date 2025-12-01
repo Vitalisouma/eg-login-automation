@@ -36,6 +36,10 @@ jobs:
     - name: Install Playwright browsers
       run: pwsh bin/Debug/net10.0/playwright.ps1 install --with-deps
       
+ # Change the execution policy to allow script execution.
+    - name: Change execution policy
+      run: Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+      
     - name: Build project
       run: dotnet build --no-restore
 
