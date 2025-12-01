@@ -11,7 +11,8 @@ Then use commands: dotnet build and dotnet test
     • Features: This POM has been kept simple.  
       
     • There are 3 Page Objects designed and the UnitTest1.cs which runs the tests.  
-<img width="1912" height="981" alt="LoginResultsInVisualStudio" src="https://github.com/user-attachments/assets/e4c6ec8e-006b-4e83-b3c4-abac32596ef5" />
+<img width="537" height="588" alt="Small POM for Login" src="https://github.com/user-attachments/assets/8efa73a4-ff0e-4045-9f14-da38da5f7874" />
+
 
 
 
