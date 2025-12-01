@@ -25,9 +25,9 @@ Then use commands: dotnet build and dotnet test
                 • Test 1: Valid Test for successful login with valid credentials
                 • Test 2: Valid Test for show/hide password functionality
             ▪  Invalid Cases
-                • Test 3: Invalid Test for login with incomplete an email
+                • Test 3: Invalid Test for login with an incomplete email
                 • Test 4: Invalid Test for email starting with a number
-                • Test 5: Invalid Testfor emaiil without a dot before the TLD
+                • Test 5: Invalid Test for emaiil without a dot before the TLD
                 • Test 6: Invalid Test for password with less than 8 characters
                 • Test 7: Invalid Test for password with no uppercase letter
                 • Test 9: Invalid Test for password with no digit
@@ -36,12 +36,11 @@ Then use commands: dotnet build and dotnet test
                 • Test 8: A smoke check that opens the Task Planner
 
     • Technologies Used: C# with Playwright, (NUNit, Github Actions, Node.js, .NET10.0)
+    
     • Issues/Bugs:
- Defects have been raised on Github issues.   https://github.com/Vitalisouma/eg-login-automation/issues  
-      There are intentional mismatches (Issues, 1,3,5) that have been detected hence tere are some failing tests. These are mainly with field error messages issue being either the wrong error message thrown or there is a misspeling.  These can be rectified to pass the tests if need be (.I.e to have the CI passing on last commit), however the automation also detects 3 actual defects (Issues 2,4,7) which flout email and password rule. Hence the last commit will be failing on last commit until the issues are fixed.
-    • Specifically, only Issue #6 answers the question asked in the assignment to raise a bug report for the manual assignment. The rest of the issues can be updated later.
+      There are intentional mismatches (Issues, 1,3,5) that have been detected hence there are some failing tests. These are mainly with field error messages. The issue being either a wrong error message has been thrown, there is a misspelling of a word or wrong words entirely.  These can be rectified to pass the tests if need be (.I.e. to have the CI passing on last commit). However, the automation also detects 3 actual defects (Issues 2,4,7) which flout email and password rules. Hence the last commit will still be failing on last commit until the issues are fixed.
+    • Note only Issue #6 answers the manual task (...to raise a foccused bug report.) in the assignment.  The rest of the issues can be brought up to standards later.
       
-
 
 
 
