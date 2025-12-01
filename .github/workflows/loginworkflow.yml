@@ -38,7 +38,7 @@ jobs:
           
       # Install project dependencies
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       # Install Playwright browsers and their dependencies
       - name: Install Playwright browsers
