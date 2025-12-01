@@ -1,5 +1,6 @@
 ﻿using Microsoft.Playwright;
 using NUnitPlaywright.Pages;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace NUnitPlaywright
 {
@@ -7,17 +8,16 @@ namespace NUnitPlaywright
     [TestFixture]
     public class Tests : PageTest
     {
-        
-        
+      
         public async Task RegisterAccount()
         {
-            var loginPage = new LoginPage(Page); // Use the provided 'Page' property
+            var RegistrationFormPage = new RegistrationFormPage(Page); // Use the provided 'Page' property
 
-            await loginPage.GotoAsync();
-            await loginPage.RegisterAsync("John Smith", "Register@yahoo.co.uk");
+            await RegistrationFormPage.GotoAsync();
+            await RegistrationFormPage.RegisterAsync("John Smith", "Register@yahoo.co.uk");
             await Expect(Page).ToHaveTitleAsync("Login Page");
         }
-
+        
 
         [Test] // Test 1: Valid Test for successful login with valid credentials
         public async Task SuccessfulLoginTest()
