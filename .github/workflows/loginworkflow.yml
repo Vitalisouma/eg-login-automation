@@ -29,7 +29,7 @@ jobs:
 
   # Install Playwright browsers and their dependencies
     - name: Install Playwright browsers
-      run: pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps
+      run: pwsh bin/Debug/net10.0/playwright.ps1 install --with-deps
 
     - name: Run NUnit tests
       run: dotnet test --no-build --verbosity normal
