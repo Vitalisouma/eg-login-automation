@@ -11,6 +11,7 @@ Then use commands: dotnet build and dotnet test
     • Features: This POM has been kept simple.  
       
     • There are 3 Page Objects designed and the UnitTest1.cs which runs the tests.  
+<img width="1912" height="981" alt="LoginResultsInVisualStudio" src="https://github.com/user-attachments/assets/e4c6ec8e-006b-4e83-b3c4-abac32596ef5" />
 
 
 
@@ -34,7 +35,7 @@ Then use commands: dotnet build and dotnet test
 
     • Technologies Used: C# with Playwright, (NUNit, Github Actions, Node.js, .NET10.0)
     • Issues/Bugs:
- Defects have been raised on Github issues.
+ Defects have been raised on Github issues.   https://github.com/Vitalisouma/eg-login-automation/issues  
       There are intentional mismatches (Issues, 1,3,5) that have been detected hence tere are some failing tests. These are mainly with field error messages issue being either the wrong error message thrown or there is a misspeling.  These can be rectified to pass the tests if need be (.I.e to have the CI passing on last commit), however the automation also detects 3 actual defects (Issues 2,4,7) which flout email and password rule. Hence the last commit will be failing on last commit until the issues are fixed.
     • Specifically, only Issue #6 answers the question asked in the assignment to raise a bug report for the manual assignment. The rest of the issues can be updated later.
       
