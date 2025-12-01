@@ -24,12 +24,12 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
 
-    - name: Build project
-      run: dotnet build --no-restore
-
-  # Install Playwright browsers and their dependencies
+ # Install Playwright browsers and their dependencies
     - name: Install Playwright browsers
       run: pwsh bin/Debug/net10.0/playwright.ps1 install --with-deps
+      
+    - name: Build project
+      run: dotnet build --no-restore
 
     - name: Run NUnit tests
       run: dotnet test --no-build --verbosity normal
