@@ -77,13 +77,13 @@ namespace NUnitPlaywright
         }
 
 
-        [Test] // Test 5: Invalid Test for emaiil without a dot before the TLD
+        [Test] // Test 5: Invalid Test for email without a dot before the TLD
         public async Task InvalidLoginEmailHasNoDot()
         {
             var loginPage = new LoginPage(Page); 
             await RegisterAccount();
             await loginPage.LoginAsync("nodotbeforetld@gmailcom", "Boxing2020@"); //Rule 4: Must include a dot before the TLD.
-            await Expect(Page.Locator("#errorMsgMail")).ToHaveTextAsync("Invalid Email"); // This test passes but the error message is wrong ("Valid Password")
+            await Expect(Page.Locator("#errorMsgMail")).ToHaveTextAsync("Invalid Email"); // This test passes but the error message is wrong ("Valid Password") Issue #1 raised on Github issues  
             await Expect(Page.Locator("#errorMsgPwd")).ToBeHiddenAsync();
         }
 
