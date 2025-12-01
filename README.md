@@ -1,4 +1,4 @@
-# POM Bases Login Project
+# POM Based Login Project
 ﻿Project Title and Description: An assignment of a small POM-based project to automate the login flow .
     • Installation Instructions: These steps will be defined in the github/workflow.
     • Usage Instructions: How to use the project's features and functionalities. Examples or code snippets are highly beneficial here.
