@@ -24,6 +24,10 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
 
+   # Install Playwright browsers and their dependencies
+    - name: Install Playwright browsers
+      run: npx playwright install --with-deps
+
     - name: Build project
       run: dotnet build --no-restore
 
