@@ -13,11 +13,6 @@ jobs:
     runs-on: ubuntu-latest # Or windows-latest, if your project requires it
 
     steps:
- # - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
-    - name: Echo GITHUB_ACTION_PATH
-      run: echo "The GitHub Action path is:$GITHUB_ACTION_PATH"
-      #run: echo "${{ github.action_path }}" >> $GITHUB_PATH
-      
     - name: Checkout repository
       uses: actions/checkout@v4
 
@@ -60,6 +55,7 @@ jobs:
 
   # PWSH Install Playwright browsers and their dependencies
     - name: PWSH Install Playwright browsers
+      shell: powershell
       run: pwsh bin/Debug/net10.0/playwright.ps1 install
 
     - name: Run NUnit tests

@@ -12,7 +12,8 @@ Then use commands: dotnet build and dotnet test
     • Features: This POM has been kept simple.  
       
     • There are 3 Page Objects designed and the UnitTest1.cs which runs the tests.  
-<img width="537" height="588" alt="Small POM for Login" src="https://github.com/user-attachments/assets/8efa73a4-ff0e-4045-9f14-da38da5f7874" />
+<img width="532" height="700" alt="Login POM Structure" src="https://github.com/user-attachments/assets/782214e2-6571-4280-bd90-7481af10da1a" />
+
 
 
 
@@ -39,7 +40,7 @@ Then use commands: dotnet build and dotnet test
     
     • Issues/Bugs:
       There are intentional mismatches (Issues, 1,3,5) that have been detected hence there are some failing tests. These are mainly with field error messages. The issue being either a wrong error message has been thrown, there is a misspelling of a word or wrong words entirely.  These can be rectified to pass the tests if need be (.I.e. to have the CI passing on last commit). However, the automation also detects 3 actual defects (Issues 2,4,7) which flout email and password rules. Hence the last commit will still be failing on last commit until the issues are fixed.
-    • Note only Issue #6 answers the manual task (...to raise a foccused bug report.) in the assignment.  The rest of the issues can be brought up to standards later.
+    • Note only Issue #6 answers the manual task (...to raise a focused bug report.) in the assignment.  The rest of the issues can be brought up to standards later.
       
 
 
