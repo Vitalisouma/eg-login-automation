@@ -53,9 +53,7 @@ jobs:
     - name: Build project
       run: dotnet build --no-restore
 
-  # Change the execution policy to allow script execution.
-    - name: Change execution policy
-      run: Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+
 
     - name: Set PowerShell Execution Policy
       shell: powershell # Explicitly specify PowerShell as the shell
