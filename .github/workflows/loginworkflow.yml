@@ -58,7 +58,7 @@ jobs:
     - name: Set PowerShell Execution Policy
       shell: powershell # Explicitly specify PowerShell as the shell
       run: |
-          Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+          pwsh Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
           # You can now run your PowerShell scripts
           Write-Host "Execution policy set to RemoteSigned for this process."
           # Example of running a script after setting the policy
