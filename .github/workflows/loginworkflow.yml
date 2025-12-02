@@ -10,7 +10,7 @@ on:
 
 jobs:
   build-and-test:
-    runs-on: windows-latest # Or windows-latest, if your project requires it
+    runs-on: ubuntu-latest # Or windows-latest, if your project requires it
 
     steps:
  # - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
