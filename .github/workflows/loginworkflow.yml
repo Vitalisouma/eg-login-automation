@@ -28,7 +28,8 @@ jobs:
     - uses: actions/setup-node@v4
       with:
         node-version: 24
-    - name: Install Node dependencies
+        
+    - name: Install Node.js dependencies
       run: npm ci
       
  # TRY: Install Ensure PowerShell is functional and updated:
