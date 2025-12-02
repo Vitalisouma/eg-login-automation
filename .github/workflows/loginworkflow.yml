@@ -32,7 +32,10 @@ jobs:
     - name: Restore .NET dependencies
       run: dotnet restore
 
-      
+ # - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
+    - name: Echo GITHUB_ACTION_PATH
+      run: echo "The GitHub Action path is:$GITHUB_ACTION_PATH"
+      #run: echo "${{ github.action_path }}" >> $GITHUB_PATH
       
  # TRY: Install Ensure PowerShell is functional and updated:
     - name: Ensure PowerShell is functional and updated 
