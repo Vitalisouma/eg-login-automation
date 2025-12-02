@@ -21,8 +21,15 @@ jobs:
       with:
         dotnet-version: '10.0' # Specify your .NET version
 
-    - name: Restore dependencies
+    - name: Restore .NET dependencies
       run: dotnet restore
+      
+    - name: Setup Node.js
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 24
+    - name: Install Node dependencies
+      run: npm ci
       
  # TRY: Install Ensure PowerShell is functional and updated:
     - name: Ensure PowerShell is functional and updated 
