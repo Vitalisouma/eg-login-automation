@@ -21,7 +21,14 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '10.0' # Specify your .NET version
+
+    - name: Restore .NET dependencies
+      run: dotnet restore
+      
     - uses: actions/setup-node@v4
       with:
         node-version: '24'
@@ -32,13 +39,9 @@ jobs:
     - name: Install Node.js dependencies
       run: npm ci
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '10.0' # Specify your .NET version
+    - name: Install @playwright/test
+      run: npm install @playwright/test
 
-    - name: Restore .NET dependencies
-      run: dotnet restore
       
  # TRY: Install Ensure PowerShell is functional and updated:
     - name: Ensure PowerShell is functional and updated 
@@ -57,7 +60,7 @@ jobs:
 
   # PWSH Install Playwright browsers and their dependencies
     - name: PWSH Install Playwright browsers
-      run: pwsh bin/Debug/net10.0/playwright.ps1 install --with-deps chromium
+      run: pwsh bin/Debug/net10.0/playwright.ps1 install
 
     - name: Run NUnit tests
       run: dotnet test --no-build --verbosity normal
