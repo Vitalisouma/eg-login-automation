@@ -16,6 +16,14 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
+    - name: Setup Node.js
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '24.1.1'
+        
+    - name: Install Node.js dependencies
+      run: npm ci
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
@@ -23,14 +31,8 @@ jobs:
 
     - name: Restore .NET dependencies
       run: dotnet restore
+
       
-    - name: Setup Node.js
-    - uses: actions/setup-node@v4
-      with:
-        node-version: '24'
-        
-    - name: Install Node.js dependencies
-      run: npm ci
       
  # TRY: Install Ensure PowerShell is functional and updated:
     - name: Ensure PowerShell is functional and updated 
