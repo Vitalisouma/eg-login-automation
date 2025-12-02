@@ -27,7 +27,7 @@ jobs:
         node-version: '24'
         
     - name: Initialize Node.js dependencies
-      run: npm init
+      run: npm init --yes
 
     - name: Install Node.js dependencies
       run: npm ci
