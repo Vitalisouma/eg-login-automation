@@ -15,8 +15,8 @@ jobs:
     steps:
  # - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
     - name: Echo GITHUB_ACTION_PATH
-      run: echo "The GitHub Action path is:$GITHUB_ACTION_PATH"
-      #run: echo "${{ github.action_path }}" >> $GITHUB_PATH
+      #run: echo "The GitHub Action path is:$GITHUB_ACTION_PATH"
+      run: echo "${{ github.action_path }}" >> $GITHUB_PATH
       
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -50,11 +50,6 @@ jobs:
   # TRY: Correctly use the Playwright CLI for installation
     - name: Use Playwright CLI for installation
       run: dotnet tool install --global Microsoft.Playwright.CLI
-
-      
- # NPX Install  Playwright browsers and their dependencies
-    - name: DOTNET Install Playwright browsers
-      run: dotnet playwright install
 
  # NPX Install  Playwright browsers and their dependencies
     - name: NPX Install Playwright browsers
