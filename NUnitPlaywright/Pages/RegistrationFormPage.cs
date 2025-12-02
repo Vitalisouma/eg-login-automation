@@ -43,8 +43,8 @@ namespace NUnitPlaywright.Pages
         }
         
 
-        // Register on the landing page of the html file
-        public async Task RegisterAsync(string fullname, string mail)
+        // Register on the landing page of the html file.
+        public async Task RegisterAsync(string fullname, string mail) 
         {
             await _fullNameInput.FillAsync(fullname);
             await _regMailInput.FillAsync(mail);
