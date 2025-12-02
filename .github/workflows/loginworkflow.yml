@@ -55,7 +55,6 @@ jobs:
 
   # PWSH Install Playwright browsers and their dependencies
     - name: PWSH Install Playwright browsers
-      shell: powershell
       run: pwsh bin/Debug/net10.0/playwright.ps1 install
 
     - name: Run NUnit tests
