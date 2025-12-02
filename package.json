@@ -6,11 +6,19 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vitalisouma/eg-login-automation.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
-  "devDependencies": {
+  "bugs": {
+    "url": "https://github.com/Vitalisouma/eg-login-automation/issues"
+  },
+  "homepage": "https://github.com/Vitalisouma/eg-login-automation#readme",
+  "dependencies": {
     "@playwright/test": "^1.57.0"
   }
 }
