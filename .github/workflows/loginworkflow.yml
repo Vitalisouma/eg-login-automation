@@ -33,15 +33,15 @@ jobs:
       run: dotnet tool install --global Microsoft.Playwright.CLI
 
  # NPX Install  Playwright browsers and their dependencies
-    - name: Install Playwright browsers
+    - name: NPX Install Playwright browsers
       run: npx playwright install --with-deps
 
     - name: Build project
       run: dotnet build --no-restore
 
   # PWSH Install Playwright browsers and their dependencies
-    - name: Install Playwright browsers
-      run: pwsh bin/Debug/net10.0/playwright.ps1 install --with-deps
+    - name: PWSH Install Playwright browsers
+      run: pwsh bin/Debug/net10.0/playwright.ps1 install --with-deps chromium
 
     - name: Run NUnit tests
       run: dotnet test --no-build --verbosity normal
