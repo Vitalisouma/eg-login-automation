@@ -33,7 +33,7 @@
 
 	<!-- Adding this snippet to see if it resolves github ci playwright issues -->
 	<ItemGroup>
-		<Content Include="C:\Users\cmuma\OneDrive\Desktop\Vits\Automation\Playwright C#\Visual Studio\NUnitPlaywright\NUnitPlaywright\bin\Debug\net10.0\playwright.ps1">
+		<Content Include="\bin\Debug\net10.0\playwright.ps1">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 			<!-- Change from PreserveNewest to Always -->
 		</Content>
