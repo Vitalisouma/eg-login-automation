@@ -1,48 +1,105 @@
-# POM Based Login Project
-﻿Project Title and Description: An assignment of a small POM-based project to automate the login flow .
-    • Installation Instructions: These steps will be defined in the github/workflow.
-    • Usage Instructions: How to use the project's features and functionalities. Examples or code snippets are highly beneficial here.
-This is being Updated……
 
-The CI is not running at the moment due to set up issues. This is being resolved.
-Meanwhile you can go to the project/solution folder on github  and pull /export a local copy of the project and run locally.  
-Run on Visual Studio. You can build from the Menu and also Test from the menu using Test Explorer. Alternatively, you can open the project in Terminal (Right click project in solution explorer > Open in Terminal.
-Then use commands: dotnet build and dotnet test
+# 1. Project Title and Description: 
+An assignment of a small POM-based project to automate the login flow.
+Technologies Used: C# with Playwright, (NUNit, Github Actions, Node.js, .NET10.0)
+      The POM Structure
+    • This POM has been kept simple.  
+      There are 3 Page Objects designed and the UnitTest1.cs which runs the tests.
+      <img width="537" height="726" alt="FullStructure" src="https://github.com/user-attachments/assets/5077e721-1fbc-4c27-ba63-420a89389655" />
+    
+# 2. Local Installation and Usage Instructions:
+# 2.1 Get Visual Studio, Set Up Nunit and Playwright
+    • Download and Install Visual Studio (VS) from Microsoft 
+    • Open VS. On the top, Click Tools > Select ‘Nuget Package Manager’ >  Select ‘Manage Nuget Package for Solution’; to Open the Nuget Solution Manager
+    • On the Nuget Solution Manager, on the top left, Click Browse. 
+    • Go to the Search and install the following 6 packages
+        ◦ Microsoft.Playwright, Microsoft.Playwright.Nunit, Microsoft.Playwright.TestAdapter
+        ◦ Nunit, Nunit.Analyzers, NUnit3TestAdapter
+        
+# 2.2 Clone / Download the repository
+    • Clone the repository for the project from the link provided  
+    • Visit the link https://github.com/Vitalisouma/eg-login-automation
+    • Click Code (In green) button and select ‘Open with Visual Studio, This opens the project directly in VS.
+      Note: There is also an option to ‘Download ZIP’ your local which is handy if you haven’t already installed Visual Studio and the packages. 
+      <img width="1271" height="462" alt="GetCode" src="https://github.com/user-attachments/assets/bfa0d9f9-6021-4123-8c3d-53daa8d6fb8a" />
+ 
+    • Unzip the folder in a chosen directory. 
+    • You can Open the file by either clicking the file from file explorer or open from within VS
+    • From File Explorer, navigate to *\NunitPlaywright\NUnitPlaywright\NUnitPlaywright.csproj
+    • Right Click the file. Select ‘Open With’ > ‘Microsoft Visual Studio’
+    • From within VS, Click ‘File’ > ‘Open’ > Select ‘Project/Solution’
+    • Navigate to where you unzipped the download from Github and click  NUnitPlaywright.csproj 
+      The project is opened in VS and you will see project with the Solution Explorer on the right showing all the project folders and files.
+      <img width="552" height="622" alt="SOLUTION EXPLORER1" src="https://github.com/user-attachments/assets/62b6fb45-6725-4e69-ad41-ea6d09c3262a" />
 
-    • Features: This POM has been kept simple.  
-      
-    • There are 3 Page Objects designed and the UnitTest1.cs which runs the tests.  
-<img width="532" height="700" alt="Login POM Structure" src="https://github.com/user-attachments/assets/7068a95f-4d45-4569-85f6-c484e32edc94" />
+You can now see the whole projects structure.  Expand or click on the folders/files to see more about their contents.
+
+# 2.3 Build and Run Tests
+In the Solution explorer, Right Click on the project NunitPlaywright and select ‘Open in Terminal’
+A power shell window will open at the bottom from where you can run commands.
+<img width="1918" height="988" alt="pwsh terminal" src="https://github.com/user-attachments/assets/98b1a7b6-537a-42e4-b7c5-4312ddc61ee1" />
+
+It is important to install and update some pacgaes and  dependencies before Build and Run Tests.
+Run these commands in sequence;
+      run: npm init –yes    *>// To Initialize Node.js dependencies
+      run: npm install  *>// To Install Node.js dependencies for LOCAL
+      run: npm ci  *>// To Install Node.js dependencies for CI 
+      run: npm install @playwright/test  *>// To Install Playwright Test library and functionalities
+      run: npx playwright install –with-deps  *>// To Install Playwright browsers
+    
+# To build the Auto – Tests, 
+Type dotnet build in the powershell prompt and press enter.  You will see the build is successful.
+<img width="1896" height="407" alt="dotnet build" src="https://github.com/user-attachments/assets/b52924b8-16e6-4e45-9cf7-edef410c8d6d" />
 
 
+# To Run the Auto Test,  
+Type dotnet test.  This will run the tests and dsplay output right here in the powershell window.  You will Test Summary at the bottom. 5 failed, 5 Passed etc.
+<img width="1907" height="460" alt="dotnet test" src="https://github.com/user-attachments/assets/816daea1-5b49-4486-ad55-99d9705adb2c" />
 
 
+You can also run the test to generate a Test report by dotnet test –logger “html”. This will generate a basic HTML test result report which will be saved in the TestResults folder in the Solution explorer.
+
+You can also run and view Test results including Debugging (with Copilot) using the Test Explorer.
+Go to the top Menu and click Test > Select ‘Test Explorer’
+<img width="1918" height="680" alt="Test Explorer" src="https://github.com/user-attachments/assets/9edb61a7-a348-4b27-882b-452654d2d327" />
 
 
+You can then scrutinize each test individually.  You can rerun test, debug, Ask Copilot, You can go to the code for the test etc.  Click here for more about Test Explorer here. 
+Note:  You can Build solution and Run tests from the top Menu of VS from the respective options
+<img width="1636" height="410" alt="Build and Test Menu" src="https://github.com/user-attachments/assets/48a654b1-5586-4d41-a399-93623555c464" />
 
+# 3. CI Installation and Usage Instructions
+      There is no need for any installations on the CI.
+      Visit the public Github repository link provided  https://github.com/Vitalisouma/eg-login-automation 
 
-    • The project automates the following scenarios for login based on the asignemnt instructions;
-            ▪  Valid Cases
-                • Test 1: Valid Test for successful login with valid credentials
-                • Test 2: Valid Test for show/hide password functionality
-            ▪  Invalid Cases
-                • Test 3: Invalid Test for login with an incomplete email
-                • Test 4: Invalid Test for email starting with a number
-                • Test 5: Invalid Test for emaiil without a dot before the TLD
-                • Test 6: Invalid Test for password with less than 8 characters
-                • Test 7: Invalid Test for password with no uppercase letter
-                • Test 9: Invalid Test for password with no digit
-                • Test 10: Invalid Test for empty email and password fields
-            ▪  A smoke check that opens Task Planner
-                • Test 8: A smoke check that opens the Task Planner
+The CI is setup accordingly, the project has been successfully pushed to this github repo.  A GitHub Actions  workflow (github/workflows/loginworkflow.yml) has been set up; running headless tests on every push/PR.
+Workflow steps have been defined including one for generating Test report.  The steps are running fine except for the main one which is To run the Tests.  This is failing and trying to resolve it has gone in circles.  Therefore, I can not proceed beyond here at the moment. Amm working to resolve the issue.  The issues have been seemingly due to environmental differences, dependency mismatches, version and Powershell issues.
 
-    • Technologies Used: C# with Playwright, (NUNit, Github Actions, Node.js, .NET10.0)
-    • Issues/Bugs:
- Defects have been raised on Github issues.   https://github.com/Vitalisouma/eg-login-automation/issues  
-            There are intentional mismatches (Issues, 1,3,5) that have been detected hence there are some failing tests. These are mainly with field error messages. The issue being either a wrong error message has been thrown, there is a misspelling of a word or wrong words entirely.  These can be rectified to pass the tests if need be (.I.e. to have the CI passing on last commit). However, the automation also detects 3 actual defects (Issues 2,4,7) which flout email and password rules. Hence the last commit will still be failing on last commit until the issues are fixed.
-    • Note: Only Issue #6 answers the manual task (...to raise a focused bug report.) in the assignment.  The rest of the issues can be brought up to standards later.
-      
+Nevertheless,  the CI still provides some meaningful insights on solving the assignment problem.
+        ◦ You can view the workflow itself, and see the steps defined and actions prompted.
+        ◦ You can see the POM structure as organized.  View the code for the 3 object pages and the UnittTest1.cs file which hosts and orchestrates the tests inlcuding assertions.
+        ◦ You can view Issues raised from the manual task. These issues includes defects found by the auto tests running in Local.  There are 3 defects and at least 2 mismatches.
+        ◦ There is also a folder for Test Results.
+        ◦ You can view the README file.
 
-
-
+# 4 Features and Issues
+    • The project automates the following scenarios for login based on the assignment instructions;
+    •  Valid Cases
+        ◦ Test 1: Valid Test for successful login with valid credentials
+        ◦ Test 2: Valid Test for show/hide password functionalit
+    •  Invalid Cases
+        ◦ Test 3: Invalid Test for login with an incomplete email
+        ◦ Test 4: Invalid Test for email starting with a number
+        ◦ Test 5: Invalid Test for email without a dot before the TLD
+        ◦ Test 6: Invalid Test for password with less than 8 characters
+        ◦ Test 7: Invalid Test for password with no uppercase letter
+        ◦ Test 9: Invalid Test for password with no digit
+        ◦ Test 10: Invalid Test for empty email and password fields
+    •  A smoke check that opens Task Planner
+        ◦ Test 8: A smoke check that opens the Task Planner
+# Issues/Bugs Summary
+ Defects have been raised on Github issues.
+ https://github.com/Vitalisouma/eg-login-automation/issues 
+      There are intentional mismatches (Issues, 1,3,5) that have been detected hence there are some failing tests. These are mainly with field error messages. The issue being either a wrong error message has been thrown, there is a misspelling of a word or wrong words entirely.  These can be rectified to pass the tests if need be (.I.e. to have the CI passing on last commit). However, the automation also detects 3 actual defects (Issues 2,4,7) which flout email and password rules. Hence the last commit will still be failing on last commit until the issues are fixed.
+      Note: Only Issue #6 answers the manual task (...to raise a focused bug report.) in the assignment.  The rest of the issues can be brought up to standards later.
 
