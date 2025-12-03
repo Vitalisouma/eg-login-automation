@@ -30,13 +30,13 @@ jobs:
     - name: Initialize Node.js dependencies
       run: npm init --yes
 
-    - name: Install Node.js dependencies ##
+    - name: Install Node.js dependencies FOR LOCAL
       run: npm install
 
-    - name: Install Node.js dependencies
+    - name: Install Node.js dependencies for CI
       run: npm ci
 
-    - name: Install @playwright/test ##
+    - name: Install Playwright Test library and functionalities
       run: npm install @playwright/test
       
  # TRY: Install Ensure PowerShell is functional and updated:
