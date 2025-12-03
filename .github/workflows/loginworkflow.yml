@@ -16,17 +16,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    
-    - uses: actions/setup-node@v4
-      with:
-        node-version: '24'
-        
-    - name: Initialize Node.js dependencies
-      run: npm init --yes
-
-    - name: Install Node.js dependencies
-      run: npm ci
-
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
@@ -34,6 +23,21 @@ jobs:
 
     - name: Restore .NET dependencies
       run: dotnet restore
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '24'
+        
+    - name: Initialize Node.js dependencies
+      run: npm init --yes
+
+    - name: Install Node.js dependencies FOR LOCAL
+      run: npm install
+
+    - name: Install Node.js dependencies for CI
+      run: npm ci
+
+    - name: Install Playwright Test library and functionalities
+      run: npm install @playwright/test
       
  # TRY: Install Ensure PowerShell is functional and updated:
     - name: Ensure PowerShell is functional and updated 
@@ -43,16 +47,16 @@ jobs:
     - name: Use Playwright CLI for installation
       run: dotnet tool install --global Microsoft.Playwright.CLI
 
- # NPX Install  Playwright browsers and their dependencies
+ # NPX Install  Playwright browsers and their dependencies 
     - name: NPX Install Playwright browsers
       run: npx playwright install --with-deps
 
     - name: Build project
       run: dotnet build --no-restore
 
-  # PWSH Install Playwright browsers and their dependencies
-    - name: PWSH Install Playwright browsers
-      run: pwsh bin/Debug/net10.0/playwright.ps1 install --with-deps chromium
+  # PWSH Install Playwright browsers and their dependencies == An alternative pwershell command to install browsers
+  #  - name: PWSH Install Playwright browsers
+   #   run: pwsh bin/Debug/net10.0/playwright.ps1 install --with-deps chromium
 
     - name: Run NUnit tests
       run: dotnet test --no-build --verbosity normal
